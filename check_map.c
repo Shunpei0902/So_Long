@@ -6,7 +6,7 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:02:21 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 02:38:24 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 04:31:25 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ static char	**read_map(int fd, int *map_width, int *map_height)
 		else if (!line)
 			map_error("Error\nempty map or get_next_line error\n", NULL);
 		if (line_len != 0 && line_len != ft_strlen(line) && line[0] != '\0'
-			&& line[0] != '\n')
+			&& line[0] != '\n' && (line_len == ft_strlen(line) - 1
+				&& line[line_len - 1] != '\0'))
 			map_error("Error\nMap is not rectangular\n", map);
 		if (line[0] != '\0' && line[0] != '\n')
 		{
