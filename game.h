@@ -6,7 +6,7 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:53:44 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 00:51:46 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:40:34 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void			loop_game(t_game *game, int map_width, int map_height);
 int				key_press_player(int keycode, t_game *game);
 void			put_image(t_game *game, char tag, int x, int y);
 void			check_coin(t_game *game);
-void			end_game(t_game *game);
+// void			end_game(t_game *game);
 void			free_map(char **map);
 void			free_images(t_game *game);
+int				destroy_window(t_game *game);
 void			map_error(char *str, char **map);
 void			img_error(char *str, t_game *game);

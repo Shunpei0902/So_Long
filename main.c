@@ -6,13 +6,13 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:01:56 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 00:53:18 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:39:31 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	init_map(t_game *game, char **map)
+static void	init_map(t_game *game, char **map)
 {
 	int	size;
 
@@ -35,7 +35,7 @@ void	init_map(t_game *game, char **map)
 		img_error("Error\nImage error\n", game);
 }
 
-void	init_game(char **map, int map_width, int map_height)
+static void	init_game(char **map, int map_width, int map_height)
 {
 	t_game	game;
 

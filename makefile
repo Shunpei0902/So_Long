@@ -6,12 +6,12 @@
 #    By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 14:47:49 by sasano            #+#    #+#              #
-#    Updated: 2023/11/29 00:27:30 by sasano           ###   ########.fr        #
+#    Updated: 2023/11/29 02:37:56 by sasano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long.a
-SRCS = ./main.c ./check_map.c ./free.c ./error.c ./game.c ./player.c ./player_utils.c ./check_playable.c
+SRCS = ./main.c ./check_map.c ./free.c ./error.c ./game.c ./player.c ./game_utils.c ./check_playable.c
 GNL_SRCS = ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
 OBJS = $(SRCS:.c=.o) $(GNL_SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fno-omit-frame-pointer

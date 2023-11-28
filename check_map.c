@@ -6,13 +6,13 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:02:21 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 01:56:29 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:38:24 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-char	**ft_add_str_to_array(char **map, char *line)
+static char	**ft_add_str_to_array(char **map, char *line)
 {
 	int		i;
 	char	**new_map;
@@ -39,7 +39,7 @@ char	**ft_add_str_to_array(char **map, char *line)
 	return (new_map);
 }
 
-void	check_element(char **map, int *check_array, int *map_width,
+static void	check_element(char **map, int *check_array, int *map_width,
 		int *map_height)
 {
 	int	x;
@@ -69,7 +69,7 @@ void	check_element(char **map, int *check_array, int *map_width,
 	*map_height = y;
 }
 
-char	**check_format_map(char **map, int *map_width, int *map_height)
+static char	**check_format_map(char **map, int *map_width, int *map_height)
 {
 	int	x;
 	int	check_array[3];
@@ -83,7 +83,7 @@ char	**check_format_map(char **map, int *map_width, int *map_height)
 	return (map);
 }
 
-char	**read_map(int fd, int *map_width, int *map_height)
+static char	**read_map(int fd, int *map_width, int *map_height)
 {
 	size_t	line_len;
 	char	**map;
@@ -94,13 +94,10 @@ char	**read_map(int fd, int *map_width, int *map_height)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line)
-		{
-			if (map)
-				return (check_format_map(map, map_width, map_height));
-			else
-				map_error("Error\nempty map\n", NULL);
-		}
+		if (!line && map)
+			return (check_format_map(map, map_width, map_height));
+		else if (!line)
+			map_error("Error\nempty map or get_next_line error\n", NULL);
 		if (line_len != 0 && line_len != ft_strlen(line) && line[0] != '\0'
 			&& line[0] != '\n')
 			map_error("Error\nMap is not rectangular\n", map);

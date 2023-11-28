@@ -6,13 +6,19 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:34:50 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 01:19:14 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:37:46 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	put_update(t_game *game, int pre_x, int pre_y)
+static void	end_game(t_game *game)
+{
+	printf("TOTAL MOVES: %d\n", game->player.move_count);
+	destroy_window(game);
+}
+
+static void	put_update(t_game *game, int pre_x, int pre_y)
 {
 	char	**map;
 
@@ -30,7 +36,7 @@ void	put_update(t_game *game, int pre_x, int pre_y)
 	}
 }
 
-void	check_move(t_game *game, int *move)
+static void	check_move(t_game *game, int *move)
 {
 	int		i;
 	int		x;
@@ -53,7 +59,7 @@ void	check_move(t_game *game, int *move)
 		move[3] = 0;
 }
 
-int	move_player(int key_code, t_game *game, int *move)
+static int	move_player(int key_code, t_game *game, int *move)
 {
 	if (key_code == UP && move[0] == 1)
 		game->player.y -= 1;

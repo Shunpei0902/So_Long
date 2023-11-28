@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_utils.c                                     :+:      :+:    :+:   */
+/*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:39:25 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 01:09:20 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:38:56 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_coin(t_game *game)
 
 void	put_image(t_game *game, char tag, int x, int y)
 {
-	void *img;
+	void	*img;
 
 	if (tag == '1')
 		img = game->map.wall_img;
@@ -37,4 +37,11 @@ void	put_image(t_game *game, char tag, int x, int y)
 		img = game->map.goal_img;
 	mlx_put_image_to_window(game->mlx, game->win, img, x * DEF_SIZE, y
 		* DEF_SIZE);
+}
+
+int	destroy_window(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	free_images(game);
+	exit(0);
 }

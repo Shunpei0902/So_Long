@@ -6,13 +6,32 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:54:58 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 01:01:14 by sasano           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:39:15 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void	put_map(t_game *game, char **map)
+static void	put_element(t_game *game, char **map, int x, int y)
+{
+	if (map[y][x] == '1')
+		put_image(game, '1', x, y);
+	else if (map[y][x] == 'P')
+	{
+		put_image(game, 'P', x, y);
+		game->player.x = x;
+		game->player.y = y;
+	}
+	else if (map[y][x] == 'C')
+	{
+		put_image(game, 'C', x, y);
+		game->map.total_coin++;
+	}
+	else if (map[y][x] == 'E')
+		put_image(game, 'E', x, y);
+}
+
+static void	put_map(t_game *game, char **map)
 {
 	int	x;
 	int	y;
@@ -22,40 +41,11 @@ void	put_map(t_game *game, char **map)
 	{
 		x = -1;
 		while (map[y][++x])
-		{
-			if (map[y][x] == '1')
-				put_image(game, '1', x, y);
-			else if (map[y][x] == 'P')
-			{
-				put_image(game, 'P', x, y);
-				game->player.x = x;
-				game->player.y = y;
-			}
-			else if (map[y][x] == 'C')
-			{
-				put_image(game, 'C', x, y);
-				game->map.total_coin++;
-			}
-			else if (map[y][x] == 'E')
-				put_image(game, 'E', x, y);
-		}
+			put_element(game, map, x, y);
 	}
 }
 
-int	destroy_window(t_game *game)
-{
-	mlx_destroy_window(game->mlx, game->win);
-	free_images(game);
-	exit(0);
-}
-
-void	end_game(t_game *game)
-{
-	printf("TOTAL MOVES: %d\n", game->player.move_count);
-	destroy_window(game);
-}
-
-int	key_check(int key_code, t_game *game)
+static int	key_check(int key_code, t_game *game)
 {
 	if (key_code == ESC)
 		destroy_window(game);
