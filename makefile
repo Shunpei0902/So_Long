@@ -6,7 +6,7 @@
 #    By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 14:47:49 by sasano            #+#    #+#              #
-#    Updated: 2023/11/29 02:37:56 by sasano           ###   ########.fr        #
+#    Updated: 2023/11/29 03:43:20 by sasano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = cc
 # Contains the X11 and MLX header files
 INCLUDES = -I/opt/X11/include -Imlx
 
-MLX_DIR = ./mlx
+MLX_DIR = ./minilibx-linux
 # MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 MLX_LIB = $(MLX_DIR)/libmlx_test.a
 
