@@ -6,7 +6,7 @@
 #    By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 14:47:49 by sasano            #+#    #+#              #
-#    Updated: 2023/11/29 03:53:29 by sasano           ###   ########.fr        #
+#    Updated: 2023/12/01 12:05:39 by sasano           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,10 +51,14 @@ $(LIBFT_LIB):
 
 
 clean:
-		rm -f $(OBJS) $(BOJS)
+	@make -C $(MLX_DIR) clean
+	@make -C $(LIBFT_DIR) clean
+	rm -f $(OBJS) $(BOJS)
 
 fclean:	clean
-		rm -f $(NAME)
+	@make -C $(MLX_DIR) fclean
+	@make -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
 
 re:	fclean all
 
