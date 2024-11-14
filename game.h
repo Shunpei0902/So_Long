@@ -37,8 +37,9 @@
 #  define UP 126
 #  define RIGHT 124
 #  define DOWN 125
-#  define DEF_SIZE 32
 # endif
+
+# define DEF_SIZE 32
 
 typedef struct s_map
 {
