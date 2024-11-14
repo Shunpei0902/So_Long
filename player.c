@@ -6,7 +6,7 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:34:50 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 02:37:46 by sasano           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:56:45 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	end_game(t_game *game)
 {
-	printf("TOTAL MOVES: %d\n", game->player.move_count);
+	ft_printf("TOTAL MOVES: %d\n", game->player.move_count);
 	destroy_window(game);
 }
 
@@ -31,7 +31,7 @@ static void	put_update(t_game *game, int pre_x, int pre_y)
 	if (map[game->player.y][game->player.x] == 'E'
 		&& game->player.coin_count == game->map.total_coin)
 	{
-		printf("You win!\n");
+		ft_printf("You win!\n");
 		end_game(game);
 	}
 }
@@ -88,8 +88,8 @@ int	key_press_player(int key_code, t_game *game)
 		check_coin(game);
 		put_update(game, pre_x, pre_y);
 		game->player.move_count++;
-		printf("move_count: %d     coin_count: %d\n", game->player.move_count,
-			game->player.coin_count);
+		ft_printf("move_count: %d     coin_count: %d\n",
+			game->player.move_count, game->player.coin_count);
 	}
 	return (0);
 }

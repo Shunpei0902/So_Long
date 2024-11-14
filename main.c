@@ -6,7 +6,7 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:01:56 by sasano            #+#    #+#             */
-/*   Updated: 2023/11/29 02:39:31 by sasano           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:37:40 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	init_map(t_game *game, char **map)
 	size = DEF_SIZE;
 	game->map.total_coin = 0;
 	game->map.map_str = map;
+	game->map.goal_img = mlx_xpm_file_to_image(game->mlx, "./img/goal.xpm",
+			&size, &size);
 	game->map.wall_img = mlx_xpm_file_to_image(game->mlx, "./img/map_block.xpm",
 			&size, &size);
 	game->map.back_img = mlx_xpm_file_to_image(game->mlx, "./img/back.xpm",
 			&size, &size);
 	game->map.coin_img = mlx_xpm_file_to_image(game->mlx, "./img/coin.xpm",
-			&size, &size);
-	game->map.goal_img = mlx_xpm_file_to_image(game->mlx, "./img/goal.xpm",
 			&size, &size);
 	game->player.player_img = mlx_xpm_file_to_image(game->mlx,
 			"./img/player.xpm", &size, &size);
@@ -40,6 +40,11 @@ static void	init_game(char **map, int map_width, int map_height)
 	t_game	game;
 
 	game.mlx = mlx_init();
+	if (!game.mlx)
+	{
+		fprintf(stderr, "Error: Failed to initialize MiniLibX\n");
+		return ;
+	}
 	init_map(&game, map);
 	game.win = mlx_new_window(game.mlx, map_width * DEF_SIZE, map_height
 			* DEF_SIZE, "Hello world!");
@@ -58,3 +63,9 @@ int	main(int argc, char **argv)
 	init_game(map, map_width, map_height);
 	return (0);
 }
+
+// void		end(void) __attribute__((destructor));
+// void	end(void)
+// {
+// 	system("leaks -q so_long");
+// }
